@@ -1,0 +1,62 @@
+---
+title: "Test_Git"
+output: html_notebook
+---
+
+Just operating a few tests and performing versioning control.
+Let's tray some cleaning and data manipulation.
+This notebook follows the exercise proposed by **R Programming 101** Youtube channel.
+
+Basically we will use some features of **tidyverse** package. If you not have it, you can install it with the command commented bellow.
+
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+
+We will work with Starwars data set, as an example to operate some changes. The aim is to simplify it according to ours needs.
+
+```{r}
+sw <- starwars
+```
+
+With glimpse() function, from dplyr(), we can see the data set's structure: how many rows ans columns, and the amount and type of the variables.
+
+```{r}
+glimpse(sw)
+```
+
+Using select() and rename(), we can change the structure of the data set into one more useful to meet our goals, selecting and renaming some variables.
+
+Also, with na.omit() we are omitting the missing values and with mutate() we will create a new variable trough a previous one.
+
+And finally, we rename the output of the variable gender and created a new variable called size, witch we choose to naming it as big or small, according to certain conditions.
+
+```{r}
+sw <- starwars %>%
+  select(name, height, mass, gender) %>%
+  rename(weigth = mass) %>%
+  na.omit() %>%
+  mutate(height = height/100) %>%
+  filter(gender %in% c("male","female")) %>%
+  mutate(gender = recode(gender,
+                         male = "m",
+                         female = "f")) %>%
+  mutate(size = height >1 & weigth > 75,
+         size = if_else(size == TRUE, "big", "small"))
+```
+
+```{r}
+glimpse(sw)
+```
+
+```{r, error=TRUE}
+summary(sw$height)
+```
+
+```{r}
+summary(sw$weigth)
+```
+
+
+And that's all for now.
