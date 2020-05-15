@@ -50,4 +50,13 @@ sw <- starwars %>%
 glimpse(sw)
 ```
 
+```{r, error=TRUE}
+summary(sw$height)
+```
+
+```{r}
+summary(sw$weigth)
+```
+
+
 And that's all for now.
