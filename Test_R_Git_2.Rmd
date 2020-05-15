@@ -58,5 +58,6 @@ summary(sw$height)
 summary(sw$weigth)
 ```
 
+As noted, there are almost infinite possibilities for manipulating the data. To a large extent, this process is dependent on the research question and the objectives of the researcher.
 
 And that's all for now.
